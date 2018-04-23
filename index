@@ -1,0 +1,26 @@
+let express = require('express');
+let server = express();
+//let config = require('3000');
+server.all('*', function(request, response) {
+    console.log(request.method + " " + request.url);
+});
+
+server.get('*', function (request, resonse) {
+    console.log("Er was een request");
+    resonse.writeHead(200, {'Content-Type': 'application/json'});
+    let result = JSON.stringify({
+        'fname': 'fjsjkk',
+        'flast': 'jdhai'
+    });
+    //resonse.write(JSON.stringify(result));
+    resonse.end(result);
+})
+
+
+//server.use('/api/v1', require('./routes/routes_api_v1'));
+//server.use('/api/v2', require('./routes/routes_api_v2'));
+
+server.listen(3000, function() {
+    console.log('Server app is listening on port ' + "3000");
+});
+module.exports = server;
